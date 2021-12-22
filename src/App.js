@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  console.log('JSDK was rendered')
+  const [data, setData] = useState()
+
+  const fetchData = () => {
+    fetch('https://dog.ceo/api/breeds/image/random')
+      .then(response => response.json())
+      .then(data => setData(data?.message))
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  console.log({ data })
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src='https://brandslogos.com/wp-content/uploads/images/large/react-logo-1.png' className="App-logo" alt="logo" />
-        <p>
-          It works! 👍
-        </p>
-        {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
+        <h1 style={{ cursor: 'pointer' }} onClick={() => alert('🐕🦴🥏')}>🐶</h1>
+        {data ? <img src={data} className="dog" alt="logo" /> : 'Loading...'}
       </header>
     </div>
   );
