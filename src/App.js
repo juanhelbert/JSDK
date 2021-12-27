@@ -22,7 +22,7 @@ function App() {
       <header className="App-header">
         <h1 style={{ cursor: 'pointer' }} onClick={() => alert('🐕🦴🥏')}>🐶</h1>
         {data ? <img src={data} className="dog" alt="logo" /> : 'Loading...'}
-        <Link to='/results'>Results</Link>
+        <Link to='result?filters={"color":null,"make":"Chevrolet","model":"Colorado","page":0,"year":"2009"}'>Make query</Link>
       </header>
     </div>
   );
