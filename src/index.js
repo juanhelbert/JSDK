@@ -14,7 +14,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route index path='/' element={<App />} />
+        <Route index path='/televisions' element={<App />} />
         <Route path='/results' element={<Results />} />
       </Routes>
     </BrowserRouter>
