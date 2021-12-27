@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom"
+import './App.css'
 
 function App() {
   const [data, setData] = useState()
@@ -21,6 +22,7 @@ function App() {
       <header className="App-header">
         <h1 style={{ cursor: 'pointer' }} onClick={() => alert('🐕🦴🥏')}>🐶</h1>
         {data ? <img src={data} className="dog" alt="logo" /> : 'Loading...'}
+        <Link to='/results'>Results</Link>
       </header>
     </div>
   );
