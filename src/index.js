@@ -1,33 +1,28 @@
+import App from './App'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App';
+import { InitialSearch } from './scenes'
+import { Results } from './scenes/Results'
 import reportWebVitals from './reportWebVitals'
-import { BrowserRouter, Routes, Route, Link, useParams, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import './index.css'
 
-const Results = () => {
-  const location = useLocation()
-  console.log({ location })
-  return (<>
-    <h1>Results</h1>
-    <Link to='/televisions'>Back</Link>
-  </>)
-}
-
-const Search = () => <>
-  <h1>Search</h1>
-  <Link to='/televisions'>Back</Link>
-</>
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache()
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='televisions' element={<App />}>
-        </Route>
-        <Route path='televisions/result' element={<Results />} />
-      </Routes>
-    </BrowserRouter>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='televisions' element={<InitialSearch />} />
+          <Route path='televisions/result' element={<Results />} />
+        </Routes>
+      </BrowserRouter>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
