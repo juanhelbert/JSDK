@@ -1,3 +1,6 @@
 export * from './Aside'
 export * from './FitSelect'
+export * from './FitResults'
+export * from './ProductCard'
 export * from './FilterGroup'
+export * from './FitPriceRange'

@@ -14,7 +14,7 @@ const getSuredoneID = () => {
   const headers = req.getAllResponseHeaders().toLowerCase()
   const uid = headers?.split('\r\n')?.filter(i => i.includes('suredone-uid'))
   if (uid?.length === 0) {
-    alert('Your SureDone ID could not be successfully received')
+    console.log('Your SureDone ID could not be successfully received')
     return null
   }
   const suredoneUID = uid?.[0].split(': ')?.[1]

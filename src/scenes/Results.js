@@ -1,14 +1,14 @@
 import React from 'react'
-import { Aside } from '../components'
-import { useQuery, gql } from '@apollo/client'
+import { Aside, FitResults } from '../components'
+
+const wrapper = { display: 'flex' }
+const aside = { width: '20%' }
 
 export const Results = () => {
-  // const { loading, error, data } = useQuery(EXCHANGE_RATES)
-
   return (
-    <div className='fitment-results'>
+    <div className='fitment-results' style={wrapper}>
       <Aside />
-      {/* <FitResults /> */}
+      <FitResults />
     </div>
   )
 }
