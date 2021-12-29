@@ -19,8 +19,8 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Routes>
-          <Route path='televisions' element={<InitialSearch />} />
-          <Route path='televisions/result' element={<Results />} />
+          <Route path='pages/fitment' element={<InitialSearch />} />
+          <Route path='pages/fitment/result' element={<Results />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

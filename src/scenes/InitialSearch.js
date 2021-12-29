@@ -67,7 +67,7 @@ export const InitialSearch = () => {
 
   useEffect(() => {
     const { year, make, model } = selected || {}
-    if (model) navigate(`/televisions/result?filters={"year":"${year.value}","make":"${make.value}","model":"${model.value}","page":0}`)
+    if (model) navigate(`/pages/fitment/result?filters={"year":"${year.value}","make":"${make.value}","model":"${model.value}","page":0}`)
   }, [selected, navigate])
 
   const section = { display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }
