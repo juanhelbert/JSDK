@@ -9,7 +9,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import './index.css'
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  // TODO: fix this
+  uri: 'https://app-beta.suredone.com/public/fitment/graphql',
   cache: new InMemoryCache()
 })
 

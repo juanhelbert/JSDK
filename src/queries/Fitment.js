@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const GET_INITIAL_OPTIONS = gql`
-  query getInitialOptions ($inStock: Boolean) {
-    getInitialOptions (inStock: $inStock) {
+  query getInitialOptions ($userId: Int, $inStock: Boolean) {
+    getInitialOptions (userId: $userId, inStock: $inStock) {
       _id
       year
       make

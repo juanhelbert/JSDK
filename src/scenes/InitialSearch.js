@@ -1,18 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import { fakeData } from '../fakeData'
+// import { fakeData } from '../fakeData'
 import { FitSelect } from '../components'
+import { useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
+import { GET_INITIAL_OPTIONS } from '../queries/Fitment'
 
 const uniqueValues = (array, key) => [...new Set(array?.map(i => i?.[key]))]
+
+var req = new XMLHttpRequest()
+req.open('GET', document.location, false)
+req.send(null)
+var headers = req.getAllResponseHeaders().toLowerCase()
+console.log({ headers })
 
 export const InitialSearch = () => {
   const navigate = useNavigate()
   const [selected, setSelected] = useState({})
 
-  // const { data, loading } = useQuery(GET_INITIAL_OPTIONS, {
-  //   variables: { inStock: false }
-  // })
-  const { getInitialOptions: options } = fakeData || {}
+  const { data, loading } = useQuery(GET_INITIAL_OPTIONS, {
+    variables: {
+      inStock: false,
+      userId: 687558
+    }
+  })
+  const { getInitialOptions: options } = data || {}
 
   const getOptions = key => {
     if (key === 'year') {
