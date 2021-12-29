@@ -8,7 +8,7 @@ const selectWrapper = { width: '32%' }
 export const FitSelect = ({ id, label, options, placeholder, autoFocus, loading, value, onChange, disabled }) => {
   return (
     <div className='select-wrapper' style={selectWrapper}>
-      <legend>{label}</legend>
+      <span>{label}</span>
       <Select
         value={value}
         clearable={false}
@@ -17,7 +17,7 @@ export const FitSelect = ({ id, label, options, placeholder, autoFocus, loading,
         isDisabled={disabled || loading}
         options={formatOptions(options, id)}
         style={{ cursor: disabled ? 'auto' : 'pointer' }}
-      // placeholder={loading ? <Spinner size='sm' className='spinner' /> : placeholder}
+        placeholder={loading ? 'Loading...' : placeholder}
       />
     </div>
   )

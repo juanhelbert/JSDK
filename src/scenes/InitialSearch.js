@@ -7,11 +7,23 @@ import { GET_INITIAL_OPTIONS } from '../queries/Fitment'
 
 const uniqueValues = (array, key) => [...new Set(array?.map(i => i?.[key]))]
 
-var req = new XMLHttpRequest()
-req.open('GET', document.location, false)
-req.send(null)
-var headers = req.getAllResponseHeaders().toLowerCase()
-console.log({ headers })
+const getSuredoneID = () => {
+  const req = new XMLHttpRequest()
+  req.open('GET', document.location, false)
+  req.send(null)
+  const headers = req.getAllResponseHeaders().toLowerCase()
+  const uid = headers?.split('\r\n')?.filter(i => i.includes('suredone-uid'))
+  if (uid?.length === 0) {
+    alert('Your SureDone ID could not be successfully received')
+    return null
+  }
+  const suredoneUID = uid?.[0].split(': ')?.[1]
+  console.log({ suredoneUID })
+  return suredoneUID
+}
+
+getSuredoneID()
+
 
 export const InitialSearch = () => {
   const navigate = useNavigate()
@@ -67,8 +79,8 @@ export const InitialSearch = () => {
         autoFocus
         id='year'
         label='Year'
-        // loading={loading}
-        // disabled={loading}
+        loading={loading}
+        disabled={loading}
         placeholder='2020'
         value={selected.year}
         onChange={handleChange}
@@ -77,7 +89,7 @@ export const InitialSearch = () => {
       <FitSelect
         id='make'
         label='Make'
-        // loading={loading}
+        loading={loading}
         placeholder='Jeep'
         value={selected.make}
         onChange={handleChange}
@@ -87,7 +99,7 @@ export const InitialSearch = () => {
       <FitSelect
         id='model'
         label='Model'
-        // loading={loading}
+        loading={loading}
         placeholder='Wrangler'
         value={selected.model}
         onChange={handleChange}
