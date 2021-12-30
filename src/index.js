@@ -20,6 +20,8 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<InitialSearch />} />
+          <Route path='/:p1' element={<InitialSearch />} />
+          <Route path='/:p1/:p2' element={<InitialSearch />} />
           <Route path='/:p1/result' element={<Results />} />
           <Route path='/:p1/:p2/result' element={<Results />} />
         </Routes>
