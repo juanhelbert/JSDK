@@ -22,7 +22,7 @@ const getSuredoneID = () => {
     suredoneUID = shopifyUID
   }
   console.log({ suredoneUID })
-  return suredoneUID
+  return Number(suredoneUID)
 }
 
 
@@ -34,7 +34,7 @@ export const InitialSearch = () => {
   const { data, loading } = useQuery(GET_INITIAL_OPTIONS, {
     variables: {
       inStock: false,
-      userId: getSuredoneID()
+      userId: getSuredoneID() // 687558
     }
   })
   const { getInitialOptions: options } = data || {}
