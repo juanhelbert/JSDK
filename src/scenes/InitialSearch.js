@@ -8,21 +8,23 @@ import { GET_INITIAL_OPTIONS } from '../queries/Fitment'
 const uniqueValues = (array, key) => [...new Set(array?.map(i => i?.[key]))]
 
 const getSuredoneID = () => {
+  let suredoneUID
   const req = new XMLHttpRequest()
   req.open('GET', document.location, false)
   req.send(null)
   const headers = req.getAllResponseHeaders().toLowerCase()
   const uid = headers?.split('\r\n')?.filter(i => i.includes('suredone-uid'))
-  if (uid?.length === 0) {
-    console.log('Your SureDone ID could not be successfully received')
-    return null
+  const shopifyUID = document.getElementById('root').getAttribute('data-suredoneid')
+  if (uid?.length > 0) { // SureDone storefront
+    suredoneUID = uid?.[0].split(': ')?.[1]
   }
-  const suredoneUID = uid?.[0].split(': ')?.[1]
+  if (shopifyUID) {
+    suredoneUID = shopifyUID
+  }
   console.log({ suredoneUID })
   return suredoneUID
 }
 
-getSuredoneID()
 
 
 export const InitialSearch = () => {
@@ -32,7 +34,7 @@ export const InitialSearch = () => {
   const { data, loading } = useQuery(GET_INITIAL_OPTIONS, {
     variables: {
       inStock: false,
-      userId: 687558
+      userId: getSuredoneID()
     }
   })
   const { getInitialOptions: options } = data || {}
