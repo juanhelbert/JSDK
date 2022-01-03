@@ -19,10 +19,10 @@ const getSuredoneID = () => {
     suredoneUID = uid?.[0].split(': ')?.[1]
   }
   if (shopifyUID) {
-    suredoneUID = shopifyUID
+    suredoneUID = Number(shopifyUID)
   }
   console.log({ suredoneUID })
-  return Number(suredoneUID)
+  return suredoneUID
 }
 
 
