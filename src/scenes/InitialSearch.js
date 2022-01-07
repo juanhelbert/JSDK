@@ -4,6 +4,7 @@ import { FitSelect } from '../components'
 import { useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { GET_INITIAL_OPTIONS } from '../queries/Fitment'
+import axios from 'axios'
 
 const uniqueValues = (array, key) => [...new Set(array?.map(i => i?.[key]))]
 
@@ -18,23 +19,39 @@ const getSuredoneID = () => {
   if (uid?.length > 0) { // SureDone storefront
     suredoneUID = uid?.[0].split(': ')?.[1]
   }
-  if (shopifyUID) {
+  if (shopifyUID) { // Shopify storefront
     suredoneUID = Number(shopifyUID)
   }
   console.log({ suredoneUID })
   return suredoneUID
 }
 
-
-
 export const InitialSearch = () => {
   const navigate = useNavigate()
   const [selected, setSelected] = useState({})
 
+  console.log('aaaaaa')
+  const [datat, setDatat] = useState({ hits: [] });
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get('https://www.hptautosport.com/products/arp-flywheel-bolts-for-88-01-honda-civic-b-series-dohc-b16-b17-b18-b20-208-2802.json', {
+        // headers: {
+        //   "X-Shopify-Access-Token": "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"
+        // }
+      })
+
+      setDatat(result);
+    };
+
+    fetchData();
+  }, []);
+  console.log(datat)
+
   const { data, loading } = useQuery(GET_INITIAL_OPTIONS, {
     variables: {
       inStock: false,
-      userId: getSuredoneID() // 687558
+      // userId: getSuredoneID() // 687558 shopify: 684336
+      userId: 684336
     }
   })
   const { getInitialOptions: options } = data || {}

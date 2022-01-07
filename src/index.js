@@ -8,9 +8,21 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import './index.css'
 
-const client = new ApolloClient({
+// TODO: move this to product card. Each product will decide the client, an apollo attribute
+const getClientURI = () => {
+  const currentStore = document.getElementById('root').getAttribute('data-storefront')
+  if (currentStore === 'shopify') {
+    const shopifyData = document.getElementById('shopify-features').text
+    const shopId = JSON.parse(shopifyData)?.shopId
+    return `https://${shopId}.myshopify.com/api/2022-01/graphql.json`
+  }
   // TODO: fix this
-  uri: 'https://app-beta.suredone.com/public/fitment/graphql',
+  return 'https://app-beta.suredone.com/public/fitment/graphql' // Suredone API
+}
+
+console.log({ URI: getClientURI() })
+const client = new ApolloClient({
+  uri: getClientURI(),
   cache: new InMemoryCache()
 })
 
