@@ -10,12 +10,12 @@ import './index.css'
 
 // TODO: move this to product card. Each product will decide the client, an apollo attribute
 const getClientURI = () => {
-  const currentStore = document.getElementById('root').getAttribute('data-storefront')
-  if (currentStore === 'shopify') {
-    const shopifyData = document.getElementById('shopify-features').text
-    const shopId = JSON.parse(shopifyData)?.shopId
-    return `https://${shopId}.myshopify.com/api/2022-01/graphql.json`
-  }
+  // const currentStore = document.getElementById('root').getAttribute('data-storefront')
+  // if (currentStore === 'shopify') {
+  //   const shopifyData = document.getElementById('shopify-features').text
+  //   const shopId = JSON.parse(shopifyData)?.shopId
+  //   return `https://${shopId}.myshopify.com/api/2022-01/graphql.json`
+  // }
   // TODO: fix this
   return 'https://app-beta.suredone.com/public/fitment/graphql' // Suredone API
 }
