@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 
 export const ProductCard = ({ item }) => {
   const { facets, guid, channels } = item || {}
   const { price, brand } = facets || {}
   const { shopify } = channels || {}
   const { url, path } = shopify || {}
-  console.log(channels.shopify)
+
+  const Card = styled.a`
+    width: calc((100% - 45px) / 4);
+    background-color: green;
+  `;
 
   // cometic-85-5mm-bore-head-gasket-mitsubishi-4g63-dsm-eclipse-gst-gsx-talon-tsi-c4233-051
 
@@ -22,7 +27,7 @@ export const ProductCard = ({ item }) => {
   console.log(data)
 
   return (
-    <div className='product' style={{ width: 'calc((100% - 45px) / 4)' }}>
+    <Card className='product' href={url}>
       <img src={data?.data?.product?.image?.src} style={{ maxWidth: '100%', height: '75%', objectFit: 'cover' }} />
       <h6 className='mt-2 text-muted'>
         {brand}
@@ -34,6 +39,6 @@ export const ProductCard = ({ item }) => {
         ${price}
       </h5>
       <a href={url}>Go to product</a>
-    </div>
+    </Card>
   )
 }
