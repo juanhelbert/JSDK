@@ -11,7 +11,7 @@ export const ProductCard = ({ item }) => {
   const Card = styled.a`
     width: calc((100% - 45px) / 4);
     /* TODO: delete this */
-    /* background: ${props => props.theme.shop === 'shopify' ? 'green' : 'blue'}; */
+    background: ${props => props.theme.shop === 'shopify' ? 'green' : 'blue'};
   `;
 
   // cometic-85-5mm-bore-head-gasket-mitsubishi-4g63-dsm-eclipse-gst-gsx-talon-tsi-c4233-051
