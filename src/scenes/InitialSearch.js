@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-// import { fakeData } from '../fakeData'
+import { getDOMdata } from '../utils'
 import { FitSelect } from '../components'
 import { useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { GET_INITIAL_OPTIONS } from '../queries/Fitment'
-import axios from 'axios'
 
 const uniqueValues = (array, key) => [...new Set(array?.map(i => i?.[key]))]
 
@@ -15,7 +14,7 @@ const getSuredoneID = () => {
   req.send(null)
   const headers = req.getAllResponseHeaders().toLowerCase()
   const uid = headers?.split('\r\n')?.filter(i => i.includes('suredone-uid'))
-  const shopifyUID = document.getElementById('root').getAttribute('data-suredoneid')
+  const shopifyUID = getDOMdata('#root', 'data-suredoneid')
   if (uid?.length > 0) { // SureDone storefront
     suredoneUID = uid?.[0].split(': ')?.[1]
   }
@@ -29,22 +28,6 @@ const getSuredoneID = () => {
 export const InitialSearch = () => {
   const navigate = useNavigate()
   const [selected, setSelected] = useState({})
-
-  // const [datat, setDatat] = useState({ hits: [] });
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await axios.get('https://www.hptautosport.com/products/arp-flywheel-bolts-for-88-01-honda-civic-b-series-dohc-b16-b17-b18-b20-208-2802.json', {
-  //       // headers: {
-  //       //   "X-Shopify-Access-Token": "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"
-  //       // }
-  //     })
-
-  //     setDatat(result);
-  //   };
-
-  //   fetchData();
-  // }, []);
-  // console.log(datat)
 
   const { data, loading } = useQuery(GET_INITIAL_OPTIONS, {
     variables: {

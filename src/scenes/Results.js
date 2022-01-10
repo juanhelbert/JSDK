@@ -1,14 +1,16 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Aside, FitResults } from '../components'
-
-const wrapper = { display: 'flex' }
-const aside = { width: '20%' }
 
 export const Results = () => {
   return (
-    <div className='fitment-results' style={wrapper}>
+    <Wrapper shopify className='fitment-results'>
       <Aside />
       <FitResults />
-    </div>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+  display: flex;
+`

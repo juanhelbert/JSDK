@@ -4,21 +4,11 @@ import ReactDOM from 'react-dom'
 import { InitialSearch } from './scenes'
 import { Results } from './scenes/Results'
 import reportWebVitals from './reportWebVitals'
+import { ThemeProvider } from 'styled-components'
+import { getClientURI, getCurrentShop } from './utils'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import './index.css'
-
-// TODO: move this to product card. Each product will decide the client, an apollo attribute
-const getClientURI = () => {
-  // const currentStore = document.getElementById('root').getAttribute('data-storefront')
-  // if (currentStore === 'shopify') {
-  //   const shopifyData = document.getElementById('shopify-features').text
-  //   const shopId = JSON.parse(shopifyData)?.shopId
-  //   return `https://${shopId}.myshopify.com/api/2022-01/graphql.json`
-  // }
-  // TODO: fix this
-  return 'https://app-beta.suredone.com/public/fitment/graphql' // Suredone API
-}
 
 console.log({ URI: getClientURI() })
 const client = new ApolloClient({
@@ -26,18 +16,24 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+const theme = {
+  shop: getCurrentShop()
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<InitialSearch />} />
-          <Route path='/:p1' element={<InitialSearch />} />
-          <Route path='/:p1/:p2' element={<InitialSearch />} />
-          <Route path='/:p1/result' element={<Results />} />
-          <Route path='/:p1/:p2/result' element={<Results />} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<InitialSearch />} />
+            <Route path='/:p1' element={<InitialSearch />} />
+            <Route path='/:p1/:p2' element={<InitialSearch />} />
+            <Route path='/:p1/result' element={<Results />} />
+            <Route path='/:p1/:p2/result' element={<Results />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

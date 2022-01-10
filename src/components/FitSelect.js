@@ -1,15 +1,14 @@
 import React from 'react'
 import Select from 'react-select'
+import styled from 'styled-components'
 
 const formatOptions = (options, type) => options?.map(i => ({ value: i, label: i, type }))
 
-const selectWrapper = { width: '32%' }
-
 export const FitSelect = ({ id, label, options, placeholder, autoFocus, loading, value, onChange, disabled }) => {
   return (
-    <div className='select-wrapper' style={selectWrapper}>
+    <Wrapper className='select-wrapper'>
       <span>{label}</span>
-      <Select
+      <StyledSelect
         value={value}
         clearable={false}
         onChange={onChange}
@@ -19,6 +18,16 @@ export const FitSelect = ({ id, label, options, placeholder, autoFocus, loading,
         style={{ cursor: disabled ? 'auto' : 'pointer' }}
         placeholder={loading ? 'Loading...' : placeholder}
       />
-    </div>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+  width: 32%;
+`
+
+const StyledSelect = styled(Select)`
+  &:focus-visible {
+    box-shadow: none;
+  }
+`
