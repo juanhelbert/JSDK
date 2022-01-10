@@ -20,6 +20,7 @@
     "react-select": "^5.2.1",
     "style-loader": "^3.3.1",
     "styled-components": "^5.3.3",
+    "to-string-loader": "^1.2.0",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

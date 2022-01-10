@@ -1,7 +1,8 @@
 import React from 'react'
 import Slider from 'rc-slider'
-import 'rc-slider/assets/index.css'
+import styled from 'styled-components'
 import { useFitment } from '../hooks/useFitment'
+import SliderCSS from 'rc-slider/assets/index.css'
 
 const { createSliderWithTooltip } = Slider
 const Range = createSliderWithTooltip(Slider.Range)
@@ -34,7 +35,7 @@ export const FitPriceRange = ({ item }) => {
   }
 
   return (
-    <div style={{ margin: '5px 20px 40px 15px' }}>
+    <Wrapper>
       <Range
         min={aMin}
         max={aMax}
@@ -43,6 +44,12 @@ export const FitPriceRange = ({ item }) => {
         onAfterChange={e => handleChange(e)}
         defaultValue={[cMin || aMin, cMax || aMax]}
       />
-    </div>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+    ${SliderCSS}
+    margin: 5px 20px 40px 15px;
+    background-color: red;
+`
