@@ -24,10 +24,12 @@ export const FitSelect = ({ id, label, options, placeholder, autoFocus, loading,
 
 const Wrapper = styled.div`
   width: 32%;
-`
+  `
 
 const StyledSelect = styled(Select)`
-  &:focus-visible {
-    box-shadow: none;
+  input {
+    &.focus-visible {
+      box-shadow: none;
+    }
   }
 `

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import { FitPriceRange } from '.'
 import { useFitment } from '../hooks/useFitment'
 // import 'rc-slider/assets/index.css'
@@ -36,40 +37,37 @@ export const FilterGroup = ({ id }) => {
     if (item && (typeof item === 'string')) sanitized = item
 
     return (
-      <li className='menu-item pr-3' key={idx}>
-        <div className='mb-0'>
-          <label check className='custom-control custom-checkbox mb-0' style={{ cursor: 'pointer' }}>
-            <input
-              type='checkbox'
-              checked={isChecked(item)}
-              className='custom-control-input'
-              onChange={e => handleCheck(e, item)}
-            />
-            <span className='custom-control-label d-flex'>
-              {sanitized}
-              <span style={{ fontSize: '85%', marginTop: '2px' }} className='ml-1'>({count})</span>
-            </span>
-          </label>
-        </div>
-      </li>
+      <Item className='menu__item' key={idx}>
+        <Label check className='menu__value'>
+          <input
+            type='checkbox'
+            checked={isChecked(item)}
+            onChange={e => handleCheck(e, item)}
+          />
+          <span>
+            {sanitized}
+            <Count className='menu__count'>({count})</Count>
+          </span>
+        </Label>
+      </Item>
     )
   }
 
   return (options?.length > 0 && !allOptionsAreNull &&
     <>
-      <ul className='menu pl-3 pr-0 py-2'>
-        <li className='menu-item has-child has-open'>
-          <label tag='legend' className='mb-1'>{id}</label>
-          <ul className='menu group'>
+      <Menu className='menu'>
+        <Item className='menu__item'>
+          <Title className='menu__title'>{id}</Title>
+          <Menu className='menu__group'>
             {options.slice(0, sliceEnd).map((item, idx) => sanitizeItem(item, idx))}
             {viewMore &&
-              <button color='link' size='xs' className='pl-0 mt-1' onClick={() => setSliceEnd(500)}>
+              <button onClick={() => setSliceEnd(500)}>
                 View more
               </button>}
-          </ul>
-        </li>
-      </ul>
-      <hr className='my-2' />
+          </Menu>
+        </Item>
+      </Menu>
+      <Hr />
     </>
   )
 }
@@ -77,28 +75,45 @@ export const FilterGroup = ({ id }) => {
 export const FixedFilterGroup = ({ title, value }) => {
   return (
     <>
-      <ul className='menu pl-3 pr-0 py-0 my-0'>
-        <li className='menu-item has-child has-open'>
-          <label tag='legend' className='mb-1'>{title}</label>
-          <ul className='menu group'>
-            <li className='menu-item pr-3'>
-              <div className='mb-0'>
-                <label check className='custom-control custom-checkbox mb-0' style={{ opacity: 0.6 }}>
-                  <input
-                    defaultChecked
-                    type='checkbox'
-                    className='custom-control-input'
-                    style={{ pointerEvent: 'none' }}
-                  />
-                  <span className='custom-control-label d-flex'>{value}
-                  </span>
-                </label>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <hr className='my-2' />
+      <Menu className='menu'>
+        <Item className='menu__item'>
+          <Title className='menu__title'>{title}</Title>
+          <Label className='menu__value' check disabled>
+            <input defaultChecked type='checkbox' />
+            <span>{value}</span>
+          </Label>
+        </Item>
+      </Menu>
+      <Hr />
     </>
   )
 }
+
+const Menu = styled.ul`
+  list-style: none;
+  `
+const Item = styled.li`
+  list-style: none;
+`
+
+const Title = styled.span`
+  display: block;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+`
+
+const Label = styled.label`
+  display: block;
+  opacity: ${p => p.disabled ? 0.6 : 1};
+  ${p => p.disabled ? 'pointer-events: none;' : 'cursor: pointer;'}
+`
+
+const Count = styled.span`
+  font-size: 80%;
+`
+
+const Hr = styled.hr`
+  margin: 10px 0;
+`

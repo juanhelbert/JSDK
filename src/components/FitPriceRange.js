@@ -51,5 +51,8 @@ export const FitPriceRange = ({ item }) => {
 const Wrapper = styled.div`
     ${SliderCSS}
     margin: 5px 20px 40px 15px;
-    background-color: red;
+
+    *:empty {
+      display: unset;
+    }
 `
