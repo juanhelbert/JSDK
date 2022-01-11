@@ -10,7 +10,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import './index.css'
 
-console.log({ URI: getClientURI() })
 const client = new ApolloClient({
   uri: getClientURI(),
   cache: new InMemoryCache()

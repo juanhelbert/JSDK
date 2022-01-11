@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { FitPriceRange } from '.'
+import styled from 'styled-components'
 import { useFitment } from '../hooks/useFitment'
-// import 'rc-slider/assets/index.css'
 
-const amountOfInitialOptions = 5
+// TODO: fix this
+// const amountOfInitialOptions = 5
+const amountOfInitialOptions = 0
 
 export const FilterGroup = ({ id }) => {
   const { results, activeFilters, addFilter, removeFilter } = useFitment()
@@ -98,6 +99,7 @@ const Item = styled.li`
 
 const Title = styled.span`
   display: block;
+  font-weight: bold;
 
   &::first-letter {
     text-transform: uppercase;

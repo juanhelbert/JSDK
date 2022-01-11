@@ -12,5 +12,8 @@ export const Results = () => {
 }
 
 const Wrapper = styled.div`
+  gap: 20px;
+  width: 100%;
   display: flex;
+  align-items: flex-start;
 `

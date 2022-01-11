@@ -1,16 +1,20 @@
 import React from 'react'
 import Slider from 'rc-slider'
 import styled from 'styled-components'
-import { useFitment } from '../hooks/useFitment'
+import { useFitment, useShopData } from '../hooks'
 import SliderCSS from 'rc-slider/assets/index.css'
 
 const { createSliderWithTooltip } = Slider
 const Range = createSliderWithTooltip(Slider.Range)
 
 export const FitPriceRange = ({ item }) => {
+  const shopData = useShopData()
+  const {storefront, primary_color} = useShopData()
   const { min, max } = item || {}
   const { activeFilters, addFilter, removeFilter } = useFitment()
   const { price } = activeFilters || {}
+
+  console.log({shopData, storefront, primary_color})
 
   // Absolute values. The min and max of the entire amount of results, comes from backend.
   const aMin = Math.floor(min)
