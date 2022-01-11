@@ -10,6 +10,7 @@ export const ProductCard = ({ item }) => {
   const { url, path } = shopify || {}
 
   const shop = getCurrentShop()
+  console.log({ shop })
 
   const fetchShopifyProductData = async () => {
     const result = await axios.get(`${path}${url}.json`)
