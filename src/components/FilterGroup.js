@@ -62,9 +62,9 @@ export const FilterGroup = ({ id }) => {
           <Menu className='menu__group'>
             {options.slice(0, sliceEnd).map((item, idx) => sanitizeItem(item, idx))}
             {viewMore &&
-              <button onClick={() => setSliceEnd(500)}>
+              <Button onClick={() => setSliceEnd(500)}>
                 View more
-              </button>}
+              </Button>}
           </Menu>
         </Item>
       </Menu>
@@ -118,4 +118,10 @@ const Count = styled.span`
 
 const Hr = styled.hr`
   margin: 10px 0;
+`
+
+const Button = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 `

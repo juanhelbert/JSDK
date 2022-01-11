@@ -14,7 +14,7 @@ const getSuredoneID = () => {
   req.send(null)
   const headers = req.getAllResponseHeaders().toLowerCase()
   const uid = headers?.split('\r\n')?.filter(i => i.includes('suredone-uid'))
-  const shopifyUID = getDOMdata('#root', 'data-suredoneid')
+  const shopifyUID = getDOMdata('#sd-root', 'data-suredoneid')
   if (uid?.length > 0) { // SureDone storefront
     suredoneUID = uid?.[0].split(': ')?.[1]
   }

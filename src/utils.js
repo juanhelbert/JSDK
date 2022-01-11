@@ -11,4 +11,4 @@ export const getDOMdata = (selector, attribute) => {
   return document.querySelector(selector).getAttribute(attribute)
 }
 
-export const getCurrentShop = () => getDOMdata('#root', 'data-storefront')
+export const getCurrentShop = () => getDOMdata('#sd-root', 'data-storefront')
