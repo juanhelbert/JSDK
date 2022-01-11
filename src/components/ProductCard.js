@@ -27,10 +27,10 @@ export const ProductCard = ({ item }) => {
   return (
     <Card className='product'>
       <Link href={url}>
-        <Img src={data?.data?.product?.image?.src} />
-        <Span className='brand'>{brand}</Span>
-        <Span className='title'>{data?.data?.product?.title}</Span>
-        <strong className='price'>${price}</strong>
+        <Img src={data?.data?.product?.image?.src} loading='lazy' />
+        <Span className='product__brand'>{brand}</Span>
+        <Span className='product__name'>{data?.data?.product?.title}</Span>
+        <Strong className='product__price'>${price}</Strong>
       </Link>
     </Card>
   )
@@ -59,4 +59,8 @@ const Span = styled.span`
   &.brand {
     font-size: 80%;
   }
+`
+
+const Strong = styled.strong`
+  font-size: 120%;
 `
