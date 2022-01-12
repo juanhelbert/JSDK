@@ -4,7 +4,7 @@ import { getCurrentShop } from '../utils'
 import React, { useState, useEffect } from 'react'
 
 export const ProductCard = ({ item }) => {
-  const { facets, guid, channels } = item || {}
+  const { facets, channels } = item || {}
   const { price, brand } = facets || {}
   const { shopify } = channels || {}
   const { url, path } = shopify || {}
@@ -28,7 +28,7 @@ export const ProductCard = ({ item }) => {
   return (
     <Card className='product'>
       <Link href={url}>
-        <Img src={data?.data?.product?.image?.src} loading='lazy' />
+        <Img src={data?.data?.product?.image?.src} alt={data?.data?.product?.image?.alt} loading='lazy' />
         <Span className='product__brand'>{brand}</Span>
         <Span className='product__name'>{data?.data?.product?.title}</Span>
         <Strong className='product__price'>${price}</Strong>
@@ -49,7 +49,7 @@ const Link = styled.a`
 
 const Img = styled.img`
   width: 100%;
-  height: 150px;
+  height: 175px;
   object-fit: cover;
 `
 

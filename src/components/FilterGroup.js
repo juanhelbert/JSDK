@@ -3,9 +3,7 @@ import { FitPriceRange } from '.'
 import styled from 'styled-components'
 import { useFitment } from '../hooks/useFitment'
 
-// TODO: fix this
-// const amountOfInitialOptions = 5
-const amountOfInitialOptions = 0
+const amountOfInitialOptions = 5
 
 export const FilterGroup = ({ id }) => {
   const { results, activeFilters, addFilter, removeFilter } = useFitment()
