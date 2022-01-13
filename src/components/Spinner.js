@@ -6,7 +6,7 @@ export const Spinner = () => {
   const { primary_color } = useShopData() || {}
   return (
     <Wrapper color={primary_color}>
-      <svg className='spinner' viewBox='0 0 50 50'>
+      <svg className='sd-spinner' viewBox='0 0 50 50'>
         <circle className='path' cx='25' cy='25' r='20' fill='none' strokeWidth='2'></circle>
       </svg>
     </Wrapper>
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   
-  .spinner {
+  .sd-spinner {
     width: 100%;
     max-width: 30px;
     animation: rotate 2s linear infinite;
