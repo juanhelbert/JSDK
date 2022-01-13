@@ -8,7 +8,8 @@ export const FitResults = ({ children }) => {
   const { raw: products, totalFacetedProducts: resultsCount } = results || {}
   const amountOfResults = resultsCount?.[0]?.total
 
-  return loadingResults
+  // return loadingResults
+  return true
     ? <Spinner />
     : (
       <Wrapper>
