@@ -8,7 +8,6 @@ const { createSliderWithTooltip } = Slider
 const Range = createSliderWithTooltip(Slider.Range)
 
 export const FitPriceRange = ({ item }) => {
-  const shopData = useShopData()
   const { storefront, primary_color } = useShopData() || {}
   const { min, max } = item || {}
   const { activeFilters, addFilter, removeFilter } = useFitment()
@@ -37,7 +36,7 @@ export const FitPriceRange = ({ item }) => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper color={primary_color}>
       <Range
         min={aMin}
         max={aMax}
@@ -53,8 +52,21 @@ export const FitPriceRange = ({ item }) => {
 const Wrapper = styled.div`
     ${SliderCSS}
     margin: 5px 20px 40px 15px;
-
+    
     *:empty {
       display: unset;
+    }
+    
+    .rc-slider-track {
+      background-color: ${({ color }) => color ? color : ''};
+    }
+
+    .rc-slider-handle {
+      border-color: ${({ color }) => color ? color : ''};
+    }
+
+    .rc-slider-handle-dragging {
+      box-shadow: 0 0 0 2px ${({ color }) => color ? color : ''} !important;
+      border-color: ${({ color }) => color ? color : ''} !important;
     }
 `

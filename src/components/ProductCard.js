@@ -17,7 +17,8 @@ export const ProductCard = ({ item }) => {
     setData(result)
   }
 
-  const [data, setData] = useState({ hits: [] })
+  const [data, setData] = useState()
+
   useEffect(() => {
     // if (shop === 'shopify') fetchShopifyProductData()
     fetchShopifyProductData()
@@ -39,6 +40,14 @@ export const ProductCard = ({ item }) => {
 
 const Card = styled.article`
   width: calc((100% - 45px) / 4);
+
+  @media (max-width: 768px) {
+    width: calc((100% - 15px) / 2)
+  }
+
+  @media (max-width: 576px) {
+    width: 100%
+  }
 `
 
 const Link = styled.a`

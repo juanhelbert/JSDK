@@ -3,8 +3,7 @@ import { GET_RESULTS } from '../queries/Fitment'
 import { useNavigate, useLocation } from 'react-router'
 
 let activeFilters
-// TODO: use 48 here
-const pageSize = 12 // Amount of results shown per page
+const pageSize = 48 // Amount of results shown per page
 
 const offset = (pageSize, currentPage) => pageSize * currentPage
 
