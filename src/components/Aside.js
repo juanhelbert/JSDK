@@ -22,8 +22,7 @@ export const Aside = ({ showFilters, setShowFilters }) => {
         <FixedFilterGroup title='Year' value={year} />
         <FixedFilterGroup title='Make' value={make} />
         <FixedFilterGroup title='Model' value={model} />
-        {/* {loadingResults ? <Spinner /> : groups?.map(i => <FilterGroup key={i} id={i} />)} */}
-        {true ? <Spinner /> : groups?.map(i => <FilterGroup key={i} id={i} />)}
+        {loadingResults ? <Spinner /> : groups?.map(i => <FilterGroup key={i} id={i} />)}
       </Nav>
     </StyledAside>
   )

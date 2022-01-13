@@ -22,22 +22,22 @@ const Wrapper = styled.div`
   .sd-spinner {
     width: 100%;
     max-width: 30px;
-    animation: rotate 2s linear infinite;
+    animation: sd-rotate 2s linear infinite;
     
     & .path {
       stroke-linecap: round;
-      animation: dash 1.5s ease-in-out infinite;
+      animation: sd-dash 1.2s ease-in-out infinite;
       stroke: ${({ color }) => color ? color : '#000'};
     }
   }
 
-  @keyframes rotate {
+  @keyframes sd-rotate {
     100% {
       transform: rotate(360deg);
     }
   }
 
-  @keyframes dash {
+  @keyframes sd-dash {
     0% {
       stroke-dashoffset: 0;
       stroke-dasharray: 1, 150;
