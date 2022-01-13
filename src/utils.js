@@ -7,8 +7,6 @@ export const getClientURI = () => {
  * @param {String} selector '#root'
  * @param {String} attribute 'data-storefront'
  */
-export const getDOMdata = (selector, attribute) => {
-  return document.querySelector(selector).getAttribute(attribute)
-}
+export const getDOMdata = (selector, attribute) => document.querySelector(selector).getAttribute(attribute)
 
 export const getCurrentShop = () => getDOMdata('#sd-root', 'data-storefront')

@@ -21,7 +21,7 @@ const getSuredoneID = () => {
   if (shopifyUID) { // Shopify storefront
     suredoneUID = Number(shopifyUID)
   }
-  console.log({ suredoneUID })
+  // console.log({ suredoneUID })
   return suredoneUID
 }
 

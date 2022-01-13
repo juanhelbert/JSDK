@@ -6,8 +6,8 @@ export const Spinner = () => {
   const { primary_color } = useShopData() || {}
   return (
     <Wrapper color={primary_color}>
-      <svg class='spinner' viewBox='0 0 50 50'>
-        <circle class='path' cx='25' cy='25' r='20' fill='none' strokeWidth='2'></circle>
+      <svg className='spinner' viewBox='0 0 50 50'>
+        <circle className='path' cx='25' cy='25' r='20' fill='none' strokeWidth='2'></circle>
       </svg>
     </Wrapper>
   )
@@ -16,18 +16,12 @@ export const Spinner = () => {
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  max-height: 50px;
   align-items: center;
   justify-content: center;
-
+  
   .spinner {
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    margin: -25px 0 0 -25px;
+    width: 100%;
+    max-width: 30px;
     animation: rotate 2s linear infinite;
     
     & .path {

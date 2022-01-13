@@ -12,7 +12,6 @@ export const FitPagination = () => {
   const canNextPage = (pageIndex + 1) < pageCount
   const gotoPage = p => updateURL('page', p)
 
-  console.log({ pageCount })
   return (
     <Wrapper>
       <Pagination>
