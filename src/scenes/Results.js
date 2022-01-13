@@ -11,7 +11,6 @@ export const Results = () => {
       <FitResults>
         <Button
           className='btn button'
-          className='show-filters'
           onClick={() => setShowFilters(s => !s)}
         >
           Filters

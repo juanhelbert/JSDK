@@ -75,7 +75,6 @@ export const InitialSearch = () => {
 
   return (
     <section style={section}>
-      <p style={{ width: '100%' }} >Find your part</p>
       <FitSelect
         autoFocus
         id='year'

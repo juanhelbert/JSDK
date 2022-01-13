@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFitment } from '../hooks/useFitment'
-import { FilterGroup, FixedFilterGroup } from '.'
+import { FilterGroup, FixedFilterGroup, Spinner } from '.'
 
 export const Aside = ({ showFilters, setShowFilters }) => {
   const { activeFilters, results, loadingResults } = useFitment()
@@ -22,7 +22,7 @@ export const Aside = ({ showFilters, setShowFilters }) => {
         <FixedFilterGroup title='Year' value={year} />
         <FixedFilterGroup title='Make' value={make} />
         <FixedFilterGroup title='Model' value={model} />
-        {loadingResults ? 'Loading...' : groups?.map(i => <FilterGroup key={i} id={i} />)}
+        {loadingResults ? <Spinner /> : groups?.map(i => <FilterGroup key={i} id={i} />)}
       </Nav>
     </StyledAside>
   )

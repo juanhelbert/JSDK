@@ -1,4 +1,5 @@
 export * from './Aside'
+export * from './Spinner'
 export * from './FitSelect'
 export * from './FitResults'
 export * from './ProductCard'

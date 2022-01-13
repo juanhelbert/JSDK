@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FitPagination, ProductCard } from '.'
 import { useFitment } from '../hooks/useFitment'
+import { FitPagination, ProductCard, Spinner } from '.'
 
 export const FitResults = ({ children }) => {
   const { loadingResults, results } = useFitment()
@@ -9,7 +9,7 @@ export const FitResults = ({ children }) => {
   const amountOfResults = resultsCount?.[0]?.total
 
   return loadingResults
-    ? 'Loading...'
+    ? <Spinner />
     : (
       <Wrapper>
         {children}
