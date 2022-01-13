@@ -9,7 +9,13 @@ export const Results = () => {
     <Wrapper shopify className='fitment-results'>
       <Aside showFilters={showFilters} setShowFilters={setShowFilters} />
       <FitResults>
-        <Button onClick={() => setShowFilters(s => !s)} className='show-filters'>Filters</Button>
+        <Button
+          className='btn button'
+          className='show-filters'
+          onClick={() => setShowFilters(s => !s)}
+        >
+          Filters
+        </Button>
       </FitResults>
     </Wrapper>
   )

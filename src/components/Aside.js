@@ -11,7 +11,12 @@ export const Aside = ({ showFilters, setShowFilters }) => {
   return (
     <StyledAside active={showFilters}>
       <Wrapper>
-        <Button onClick={() => setShowFilters(false)}>Close</Button>
+        <Button
+          className='btn button'
+          onClick={() => setShowFilters(false)}
+        >
+          Close
+        </Button>
       </Wrapper>
       <Nav>
         <FixedFilterGroup title='Year' value={year} />
@@ -27,10 +32,12 @@ const StyledAside = styled.aside`
   width: 20%;
 
   @media (max-width: 576px) {
+    top: 0;
     width: 100%;
+    z-index: 999;
     height: 100%;
     overflow: auto;
-    position: absolute;
+    position: fixed;
     transition: .3s ease;
     background-color: white;
     box-shadow: 0px -5px 20px #00000080;

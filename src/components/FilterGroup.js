@@ -92,6 +92,7 @@ const Menu = styled.ul`
   list-style: none;
   `
 const Item = styled.li`
+  padding: 0 10px;
   list-style: none;
 `
 
