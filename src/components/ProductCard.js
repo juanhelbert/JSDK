@@ -1,6 +1,7 @@
-import axios from 'axios'
+import React from 'react'
+// import { fetcher } from '../utils'
 import styled from 'styled-components'
-import React, { useState, useEffect } from 'react'
+import { useProduct } from '../hooks/useProduct'
 
 export const ProductCard = ({ item }) => {
   const { facets, channels } = item || {}
@@ -8,22 +9,13 @@ export const ProductCard = ({ item }) => {
   const { shopify } = channels || {}
   const { url, path } = shopify || {}
 
-  const fetchShopifyProductData = async () => {
-    const result = await axios.get(`${path}${url}.json`)
-    setData(result)
-  }
+  const { data } = useProduct(`${path}${url}.json`)
 
-  const [data, setData] = useState()
-
-  useEffect(() => {
-    // if (shop === 'shopify') fetchShopifyProductData()
-    fetchShopifyProductData()
-  }, [fetchShopifyProductData])
 
   return (
     <Card className='product'>
       <Link href={url}>
-        <Img src={data?.data?.product?.image?.src} alt={data?.data?.product?.image?.alt} loading='lazy' />
+        <Img src={data?.product?.image?.src} alt={data?.data?.product?.image?.alt} loading='lazy' />
         <Span className='product__brand'>{brand}</Span>
         <Span className='product__name'>{data?.data?.product?.title}</Span>
         <Strong className='product__price'>${price}</Strong>

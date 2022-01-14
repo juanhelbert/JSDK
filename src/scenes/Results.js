@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
 import styled from 'styled-components'
+import React, { useState } from 'react'
 import { Aside, FitResults } from '../components'
 
 export const Results = () => {
