@@ -1,5 +1,4 @@
 import React from 'react'
-// import { fetcher } from '../utils'
 import styled from 'styled-components'
 import { useProduct } from '../hooks/useProduct'
 
@@ -10,7 +9,6 @@ export const ProductCard = ({ item }) => {
   const { url, path } = shopify || {}
 
   const { data } = useProduct(`${path}${url}.json`)
-
 
   return (
     <Card className='product'>
