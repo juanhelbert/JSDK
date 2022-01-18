@@ -59,12 +59,13 @@ export const InitialSearch = () => {
     }
   }
 
+  console.log({ useWindowToNavigate: !window.location.href.split('/').includes('fitment') })
   useEffect(() => {
     const { year, make, model } = selected || {}
     if (model) {
       const link = `pages/fitment/result?filters={"year":"${year.value}","make":"${make.value}","model":"${model.value}","page":0}`
-      const useWindow = window.location.href.split('/').includes('fitment')
-      if (useWindow) {
+      const useWindowToNavigate = !window.location.href.split('/').includes('fitment')
+      if (useWindowToNavigate) {
         window.location = window.location.href + link
       } else {
         navigate('/' + link)
