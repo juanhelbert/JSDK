@@ -19,8 +19,6 @@ const getFromHeaders = () => {
 export const InitialSearch = () => {
   const shopData = useShopData()
   const { suredone_id } = shopData || {}
-  // TODO: remove this
-  console.log({ suredone_id })
   const navigate = useNavigate()
   const [selected, setSelected] = useState({})
 
@@ -64,7 +62,13 @@ export const InitialSearch = () => {
   useEffect(() => {
     const { year, make, model } = selected || {}
     if (model) {
-      navigate(`/pages/fitment/result?filters={"year":"${year.value}","make":"${make.value}","model":"${model.value}","page":0}`)
+      const link = `pages/fitment/result?filters={"year":"${year.value}","make":"${make.value}","model":"${model.value}","page":0}`
+      const useWindow = !window.location.href.split('/').includes('fitment')
+      if (useWindow) {
+        window.location = window.location.href + link
+      } else {
+        navigate(link)
+      }
     }
   }, [selected, navigate])
 
