@@ -1,39 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import { getDOMdata } from '../utils'
 import { FitSelect } from '../components'
 import { useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
+import { useShopData } from '../hooks/useShopData'
 import { GET_INITIAL_OPTIONS } from '../queries/Fitment'
 
 const uniqueValues = (array, key) => [...new Set(array?.map(i => i?.[key]))]
 
-const getSuredoneID = () => {
-  let suredoneUID
+const getFromHeaders = () => {
   const req = new XMLHttpRequest()
   req.open('GET', document.location, false)
   req.send(null)
   const headers = req.getAllResponseHeaders().toLowerCase()
   const uid = headers?.split('\r\n')?.filter(i => i.includes('suredone-uid'))
-  const shopifyUID = getDOMdata('#sd-root', 'data-suredoneid')
-  if (uid?.length > 0) { // SureDone storefront
-    suredoneUID = uid?.[0].split(': ')?.[1]
-  }
-  if (shopifyUID) { // Shopify storefront
-    suredoneUID = Number(shopifyUID)
-  }
-  // console.log({ suredoneUID })
-  return suredoneUID
+  if (uid?.length > 0) return uid?.[0].split(': ')?.[1]
 }
 
 export const InitialSearch = () => {
+  const shopData = useShopData()
+  const { suredone_id } = shopData || {}
+  // TODO: remove this
+  console.log({ suredone_id })
   const navigate = useNavigate()
   const [selected, setSelected] = useState({})
 
   const { data, loading } = useQuery(GET_INITIAL_OPTIONS, {
     variables: {
       inStock: false,
-      // userId: getSuredoneID() // 687558 shopify: 684336
-      userId: 684336
+      // TODO: remove fixed ids userId: 687558 shopify: 684336
+      userId: Number(suredone_id) || getFromHeaders() || 684336
     }
   })
   const { getInitialOptions: options } = data || {}
@@ -68,7 +63,9 @@ export const InitialSearch = () => {
 
   useEffect(() => {
     const { year, make, model } = selected || {}
-    if (model) navigate(`/pages/fitment/result?filters={"year":"${year.value}","make":"${make.value}","model":"${model.value}","page":0}`)
+    if (model) {
+      navigate(`/pages/fitment/result?filters={"year":"${year.value}","make":"${make.value}","model":"${model.value}","page":0}`)
+    }
   }, [selected, navigate])
 
   const section = { display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }
