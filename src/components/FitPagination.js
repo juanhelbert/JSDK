@@ -52,6 +52,7 @@ const Pagination = styled.ul`
 
 const PaginationItem = styled.li`
   margin: 10px 5px;
+  list-style: none;
   ${p => p.active ? 'font-weight: bold' : ''};
 `
 

@@ -89,10 +89,12 @@ export const FixedFilterGroup = ({ title, value }) => {
 }
 
 const Menu = styled.ul`
+  padding: 0;
   list-style: none;
   `
+
 const Item = styled.li`
-  padding: 0 10px;
+  padding: 0 5px;
   list-style: none;
 `
 
