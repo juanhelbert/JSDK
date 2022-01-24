@@ -59,7 +59,6 @@ export const InitialSearch = () => {
     }
   }
 
-  console.log({ useWindowToNavigate: !window.location.href.split('/').includes('fitment') })
   useEffect(() => {
     const { year, make, model } = selected || {}
     if (model) {
