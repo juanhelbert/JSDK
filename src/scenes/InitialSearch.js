@@ -17,6 +17,8 @@ const getFromHeaders = () => {
 }
 
 export const InitialSearch = () => {
+  // TODO: REMOVE THIS
+  console.log('_________ test __________')
   const shopData = useShopData()
   const { suredone_id } = shopData || {}
   const navigate = useNavigate()
